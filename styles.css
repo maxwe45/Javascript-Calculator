@@ -1,0 +1,72 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 0;
+    margin-top: 10em;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
+
+.numbers {
+    display: flex;
+    width:80px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3px;
+}
+
+#negative {
+    display: flex;
+    flex: 0 1 0;
+    padding: 1px 6px;
+    width: 23.42px;
+    justify-content: center;
+}
+
+#decimal {
+    display: flex;
+    flex: 0 1 0;
+    padding-left: 7.75px;
+    padding-right: 7.75px;
+}
+
+.operations {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 0;
+    width: 25px;
+    justify-content: space-between;
+    gap: 3px;
+}
+
+#clear {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-left:auto;
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 111px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+}
