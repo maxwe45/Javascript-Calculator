@@ -4,6 +4,7 @@ const round = (val) => {return Math.round(val*10000)/10000;};
 ///////
 //Opperation functions
 function add(num1,num2){
+    parseFloat(num1 && num2, 10)
     let ans = round(num1+num2)
     return ans};
 
@@ -27,6 +28,7 @@ function divide(num1, num2){
     
 //switches through opperators until it matches the user request then calls the according opperation function with the right numbers
 const opperate = (num1,opp,num2) => {
+
     switch(opp){
         case opp='+':
             return add(num1,num2);
@@ -61,9 +63,8 @@ const bttns = digitClass.map(cla => {
         return displayContent;
     })
 })
-//decimal and negative buttons
+//decimal button
 const decimal = document.querySelector('#decimal');
-const negative = document.querySelector('#negative');
 
 //adds a decimal option to equations
 decimal.addEventListener('click', () => {
@@ -72,17 +73,6 @@ decimal.addEventListener('click', () => {
     displayContent += bttnContent;
     return displayContent
 });
-
-negative.addEventListener('click', () => {
-    let dispLength = displayContent.length;
-        for(let i=0;i<dispLength;i++){
-            if(displayContent[i]===('+'||'-'||'*'||'/')){
-                let start = i+1;
-                let num = displayContent.slice(start);
-                let numBetter = parseFloat(num)
-                displayContent+=(numBetter*-1); 
-                display.textContent+=`${numBetter*-1}`
-            }}});
 
 //list of opperators available
 const opperators = ['plus', 'minus', 'times', 'divided'];
@@ -126,8 +116,7 @@ let sepOpps = opp => {
             let num12 = parseFloat(num1);
             let num2 = opp.slice(i+1);
             let num22 = parseFloat(num2);
-            return [num12, '/', num22]};
-    }};
+            return [num12, '/', num22]}}};
 
 //equals button
 const equals = document.querySelector('#equals');
@@ -147,4 +136,38 @@ equals.addEventListener('click', ()=> {try{
     catch{display.textContent='';
     displayContent='';}
 });
+
+//allows the clear button to work and clear the display
+const clear = document.querySelector('#clear');
+clear.addEventListener('click', () => {
+    displayContent = '';
+    display.textContent = '';
+    return displayContent, display.textContent;
+})
+
+//allows num keys on keyboard to be used instead of buttons
+addEventListener('keydown', (e) => {
+    let key = e.key;
+    const acceptable = ['0','1','2','3','4','5','6','7','8','9']
+    if(key in acceptable){
+    displayContent += key;
+    display.textContent += key;
+    console.log(key)
+    return displayContent}
+})
+
+//allows the equals button to be used instead of equals button
+addEventListener('keydown', (e)=> {
+    if(e.key==='='){
+    try{let seperated = sepOpps(displayContent);
+    let num1 = seperated[0];
+    let opp = seperated[1];
+    let num2 = seperated[2];
+    console.log(opperate(num1,opp,num2));
+    let ans = opperate(num1,opp,num2);
+    display.textContent = '';
+    display.textContent = ans;
+    displayContent = ans;}
+    catch{display.textContent='';
+    displayContent='';}}});
 
